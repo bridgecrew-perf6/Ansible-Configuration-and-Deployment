@@ -1,0 +1,13 @@
+---
+- name: "Install apache2"
+  become: true  # Elevating privillages (sudo)
+  apt:          # Ansible module (ready to use) to install any app
+    name: ["apache2"]
+    state: latest
+    #update_cache: yes
+
+- name: "install/Copy index page"
+  copy:
+    src: index.html                 # Since we are using roles .. so we dont have to put the full path for index.html , t will go to files and find index.html
+    dest: /var/www/html/index.html  # The folder on the remote machine
+    backup: yes
